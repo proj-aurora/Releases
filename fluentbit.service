@@ -1,0 +1,11 @@
+[Unit]
+Description=Fluent-bit Service
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/fluent-bit/bin
+ExecStart=/opt/fluent-bit/bin/fluent-bit -c /etc/fluent-bit/fluent-bit.yml
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
