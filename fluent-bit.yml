@@ -1,0 +1,42 @@
+env:
+  flush_interval: 1
+service:
+  flush: '${flush_interval}'
+  log_level: info
+  http_server: 'off'
+  daemon: 'off'
+pipeline:
+  inputs:
+    - name: tail
+      tag: syslog
+      path: /var/log/syslog
+    - name: cpu
+      tag: cpu
+    - name: disk
+      tag: disk
+    - name: mem
+      tag: memory
+    - name: netif
+      tag: netif
+      interface: ens3
+
+  filters:
+    - name:  lua
+      match: "*"
+      call:  append_tag
+      code:  |
+          function append_tag(tag, timestamp, record)
+             new_record = record
+             new_record["tag"] = tag
+             return 1, timestamp, new_record
+          end
+
+  outputs:
+    - name: websocket
+      match: '*'
+      host: localhost
+      port: 29100
+      uri: /
+      format: json_lines
+      json_date_key: timestamp
+      json_date_format: iso8601
