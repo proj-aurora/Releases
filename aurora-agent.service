@@ -1,0 +1,11 @@
+[Unit]
+Description=Aurora Agent Service
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/aurora-agent
+ExecStart=/opt/aurora-agent/start.sh
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
