@@ -29,7 +29,7 @@ CONFIG_URL="https://github.com/proj-aurora/Releases/raw/main/fluent-bit.yml"
 SERVICE_URL="https://github.com/proj-aurora/Releases/raw/main/fluentbit.service"
 SERVICE1_URL="https://github.com/proj-aurora/Releases/raw/main/aurora-agent.service"
 
-curl https://raw.githubusercontent.com/fluent/fluent-bit/master/install.sh | sh
+curl https://raw.githubusercontent.com/proj-aurora/Releases/main/fluentinstall.sh | sh
 wget "$CONFIG_URL" -O /etc/fluent-bit/fluent-bit.yml
 wget "$SERVICE_URL" -O /etc/systemd/system/fluentbit.service
 wget "$SERVICE1_URL" -O /etc/systemd/system/aurora-agent.service
