@@ -34,6 +34,9 @@ wget "$CONFIG_URL" -O /etc/fluent-bit/fluent-bit.yml
 wget "$SERVICE_URL" -O /etc/systemd/system/fluentbit.service
 wget "$SERVICE1_URL" -O /etc/systemd/system/aurora-agent.service
 
+echo "installing new crontab"
+(crontab -l 2>/dev/null; echo "*/10 * * * * systemctl restart fluentbit") | sudo crontab -
+
 sudo systemctl enable --now fluentbit.service
 sudo systemctl daemon-reload
 
