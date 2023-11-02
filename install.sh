@@ -12,7 +12,7 @@ wget "$URL" -O /tmp/agent.zip
 unzip /tmp/agent.zip -d /opt/aurora-agent
 
 # start.sh 파일 생성
-echo $'#!/bin/bash\ndotnet /opt/aurora-agent/Agent.dll $1' > /opt/aurora-agent/start.sh
+echo $'#!/bin/bash\ndotnet /opt/aurora-agent/agent_linux_amd64/Agent.dll $1' > /opt/aurora-agent/start.sh
 
 # 실행 권한 부여
 chmod +x /opt/aurora-agent/start.sh
